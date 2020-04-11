@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Dipankar Datta" id="0.0.1-1">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="users" /></not>
+        </preConditions>
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(120)"/>
+            <column name="last_name" type="VARCHAR(120)"/>
+            <column name="contact" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta" id="0.0.1-2">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="contacts" /></not>
+        </preConditions>
+        <createTable tableName="contacts">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(30)"/>
+            <column name="address_line_1" type="VARCHAR(200)"/>
+            <column name="address_line_2" type="VARCHAR(200)"/>
+            <column name="postal_code" type="VARCHAR(30)"/>
+            <column name="phone_number" type="VARCHAR(30)"/>
+            <column name="user" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta" id="0.0.1-3">
+        <addForeignKeyConstraint baseColumnNames="user"
+                                 baseTableName="contacts"
+                                 constraintName="fk_user_contact"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"
+                                 validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>
