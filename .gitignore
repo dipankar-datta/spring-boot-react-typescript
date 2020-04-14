@@ -141,3 +141,6 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+# For resources generated for packaging
+src/main/resources/public/
