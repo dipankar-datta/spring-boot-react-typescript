@@ -112,7 +112,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>src/main/resources/public</outputDirectory>
+							<outputDirectory>src/main/resources/static</outputDirectory>
 							<resources>
 								<resource>
 									<directory>client/build</directory>
